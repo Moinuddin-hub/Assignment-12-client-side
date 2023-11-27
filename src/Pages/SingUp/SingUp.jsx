@@ -6,7 +6,7 @@ import useAuth from "../../Hook/useAuth";
 const SingUp = () => {
 
     const { createUser, handleUpdateProfile } = useAuth();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();

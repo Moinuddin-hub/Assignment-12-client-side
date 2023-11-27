@@ -1,6 +1,8 @@
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import OverView from '../../TabSection/OverView';
+import Package from '../../TabSection/Package';
 const Section = () => {
     return (
         <div>
@@ -13,10 +15,10 @@ const Section = () => {
     </TabList>
 
     <TabPanel>
-      <h2>Any content 1</h2>
+       <OverView></OverView>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 2</h2>
+      <Package></Package>
     </TabPanel>
     <TabPanel>
       <h2>Any content 3</h2>

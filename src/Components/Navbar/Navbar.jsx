@@ -1,11 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link,NavLink} from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 
 
 const Navbar = () => {
     const Menus = () => 
                     <>
-    <li className="px-4 py-2"><NavLink to="/" className={({ isActive, isPending }) =>  
+    <li className="px-4 py-2"><NavLink
+     to="/" className={({ isActive, isPending }) =>  
        isPending ? "pending" : isActive ? "active" : ""   } >Home
       </NavLink></li>
       <li className="px-4 py-2"><NavLink to="/" className={({ isActive, isPending }) =>  
