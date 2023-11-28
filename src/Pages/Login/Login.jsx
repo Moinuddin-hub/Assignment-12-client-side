@@ -6,7 +6,8 @@ import useAuth from "../../Hook/useAuth";
 const Login = () => {
     const navigate = useNavigate()
     const { signIn } = useAuth();
-
+    const from =location.state?.from?.pathname || "/";
+    console.log('state in the location login page',location.state)
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -20,8 +21,6 @@ const Login = () => {
             toast.error('Password must be at least 6 characters');
             return;
         }
-
-
         // creating a new user
         signIn (email, password)
             .then(() => {
@@ -31,8 +30,7 @@ const Login = () => {
             .catch(error => {
                 toast.error(error.message)
             })
-
-
+            navigate(from,{replace:true});
 
 
     }

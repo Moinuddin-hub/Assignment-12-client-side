@@ -1,10 +1,64 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
+import useAxiosSecure from "../Hook/useAxiosSecure";
+import usePackage from "../Hook/usePackage";
 const Cards = ({ card }) => {
+  const navigate = useNavigate();
+  const location=useLocation();
+  const axiosSecure=useAxiosSecure();
+  const { user } = useAuth();
+  const [,refetch]=usePackage();
   const { _id, image, type, title, price } = card;
+  const handleCard = () => {
+    // console.log(user.email, item);
+    if (user && user.email) {
+      //
+      const cartItem = {
+        cardIt: _id,
+        email: user.email,
+        image,
+        price,
+      };
+      axiosSecure.post("/carts", cartItem).then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title:"cart added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "please login",
+        text: "Please login and add to cart!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes,login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
 
   return (
     <>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+   
+      <div
+       
+        className="card card-compact w-96 bg-base-100 shadow-xl"
+      >
+        <div  onClick={handleCard}>
         <figure>
           <img src={image} alt="" className="w-full h-80" />
         </figure>
@@ -16,10 +70,15 @@ const Cards = ({ card }) => {
         <div className="card-body">
           <h2 className="card-title text-3xl font-bold">{type}</h2>
           <h2 className="text-xl font-bold ">{title}</h2>
-          <div className="card-actions justify-end">
-            <Link to={`/details/${_id}`} ><button className="btn btn-primary">View</button></Link>
           </div>
-        </div>
+          </div>
+          <div className="card-actions justify-end">
+            <Link to={`/details/${_id}`}>
+              <button className="btn btn-primary">View</button>
+            </Link>
+          </div>
+        
+      
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import Package from "../TabSection/Package";
 import Main from "../Layout/Main";
 import Details from "../TabSection/DetailsCard/Details";
 import Home from "../Pages/Home/Home";
+// import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
