@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import Cards from "./Cards";
 import { Link } from "react-router-dom";
-import usePackage from "../Hook/usePackage";
+import useCart from "../Hook/useCart";
+
 const Package = () => {
    const [card,setCard]=useState([]);
-   const[cart]=usePackage();
+    const [cart]=useCart();  
    useEffect(()=>{
        fetch('http://localhost:5000/package')
        .then(res=>res.json())
@@ -16,7 +17,7 @@ const Package = () => {
       console.log(card);
     return (
           <>
-           <Link to='/' ><button className='btn py-4'><FaCartPlus></FaCartPlus>
+           <Link to='/dashboard/cart' ><button className='btn py-4'><FaCartPlus></FaCartPlus>
             <div className="badge badge-secondary">+{cart.length}</div></button></Link>
           <div className="grid grid-cols-3 mt-4">
             {
@@ -24,7 +25,7 @@ const Package = () => {
             }
           </div>
             <div className="text-center mt-4">
-            <button className="btn btn-outline text-center">All package</button>
+            <Link to='package'><button className="btn btn-outline text-center">All package</button></Link>
             </div>
           </>
     );

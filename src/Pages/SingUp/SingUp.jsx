@@ -2,9 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import toast from "react-hot-toast";
 import useAuth from "../../Hook/useAuth";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SingUp = () => {
-
+    const axiosPublic=useAxiosPublic();
     const { createUser, handleUpdateProfile } = useAuth();
     const navigate = useNavigate();
 
@@ -17,21 +19,35 @@ const SingUp = () => {
         const img = event.target.img.value;
         const password = event.target.password.value;
 
-
         // validation 
         if (password.length < 6) {
             toast.error('Password must be at least 6 characters');
             return;
         }
-
-
         // creating a new user
         createUser(email, password)
+        const userInfo={
+            name:name,
+            email:email,
+            img:img,
+        }
+        axiosPublic.post('/users',userInfo)
+        .then(res=>{
+            if(res.data.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+            }
+        })
             .then(() => {
                 handleUpdateProfile(name, img)
                     .then(() => {
                         toast.success('User created successfully');
-                        navigate('/')
+                        navigate('/login')
 
                     })
             })

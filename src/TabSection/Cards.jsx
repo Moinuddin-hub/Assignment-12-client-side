@@ -3,7 +3,7 @@ import useAuth from "../Hook/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAxiosSecure from "../Hook/useAxiosSecure";
-import usePackage from "../Hook/usePackage";
+import usePackage from "../Hook/useCart";
 const Cards = ({ card }) => {
   const navigate = useNavigate();
   const location=useLocation();
@@ -20,6 +20,7 @@ const Cards = ({ card }) => {
         email: user.email,
         image,
         price,
+        type
       };
       axiosSecure.post("/carts", cartItem).then((res) => {
         console.log(res.data);

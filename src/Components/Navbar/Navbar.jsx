@@ -69,9 +69,8 @@ const Navbar = () => {
                                 <button className="btn btn-sm  btn-ghost"
                                     onClick={logOut}
                                 >Logout</button>
-
                             </li>
-                            <li><button className="btn btn-sm  btn-ghost">Dashboard</button></li>
+                           <Link to='/dashboard'> <li><button className="btn btn-sm  btn-ghost">Dashboard</button></li></Link>
                         </ul>
                     </div>
                         :
