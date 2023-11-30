@@ -10,6 +10,11 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import Packages from "../Pages/AllPackage/Packages";
 import AllUser from "../Layout/Dashboard/AllUser/AllUser";
+import AddCart from "../Layout/Dashboard/AddPackage/AddCart";
+import UserProfile from "../Layout/Dashboard/UserProfile/UserProfile";
+import UserBooking from "../Layout/Dashboard/Booking/UserBooking";
+import MeetGuide from "../Components/MeetGuide/MeetGuide";
+import TourGuideProfile from "../Components/MeetGuide/TourGuideProfile";
 // import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -32,7 +37,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:_id",
-        // loader: ({params}) => fetch(`http://localhost:5000/package/${params._id}`),
         element:<Details></Details>
       },
       {
@@ -40,6 +44,14 @@ const router = createBrowserRouter([
         element:<Packages></Packages>,
         loader:() => fetch('http://localhost:5000/package'),
 
+      },
+      {
+        path:'meetGuide',
+        element:<MeetGuide></MeetGuide>
+      },
+      {
+        path:'tourGuideProfile',
+        element:<TourGuideProfile></TourGuideProfile>
       }
     ],
   },
@@ -56,8 +68,19 @@ const router = createBrowserRouter([
         path:'users',
         element:<AllUser></AllUser>
       },
-
-    
+      {
+        path:'addPackage',
+        element:<AddCart></AddCart>
+      },
+      {
+        path:'userProfile',
+        element:<UserProfile></UserProfile>
+      },
+      {
+        path:'userBooking',
+        element:<UserBooking></UserBooking>
+      }
+ 
     ]
 
   }

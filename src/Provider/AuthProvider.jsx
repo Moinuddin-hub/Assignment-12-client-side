@@ -52,25 +52,31 @@ const AuthProvider = ({ children }) => {
 
 
     // using observer
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            setLoading(false)
-        });
-    }, [])
+    // useEffect(() => {
+    //     onAuthStateChanged(auth, (user) => {
+    //         setUser(user);
+    //         setLoading(false)
+    //     });
+    // }, [])
 
 
     // recommended  way
 
-    // useEffect(() => {
-    //     const unSubscribe = onAuthStateChanged(auth, (user) => {
-    //         setUser(user)
-    // setLoading(false)
-    //    });
-    //     return () => {
-    //         unSubscribe()
-    //     }
-    // }, [])
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+            // if(user){
+
+            // }
+            // else{
+
+            // }
+    setLoading(false)
+       });
+        return () => {
+            unSubscribe()
+        }
+    }, [])
 
 
     const authentication = {

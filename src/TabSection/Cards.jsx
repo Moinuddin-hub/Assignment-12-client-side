@@ -5,12 +5,13 @@ import axios from "axios";
 import useAxiosSecure from "../Hook/useAxiosSecure";
 import usePackage from "../Hook/useCart";
 const Cards = ({ card }) => {
+  console.log(card);
   const navigate = useNavigate();
   const location=useLocation();
   const axiosSecure=useAxiosSecure();
   const { user } = useAuth();
   const [,refetch]=usePackage();
-  const { _id, image, type, title, price } = card;
+  const { _id, image, type, title, price,name } = card;
   const handleCard = () => {
     // console.log(user.email, item);
     if (user && user.email) {
@@ -18,9 +19,12 @@ const Cards = ({ card }) => {
       const cartItem = {
         cardIt: _id,
         email: user.email,
+        name,
         image,
         price,
-        type
+        type,
+        
+      
       };
       axiosSecure.post("/carts", cartItem).then((res) => {
         console.log(res.data);

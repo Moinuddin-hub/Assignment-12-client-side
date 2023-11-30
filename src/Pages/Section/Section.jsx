@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import OverView from '../../TabSection/OverView';
 import Package from '../../TabSection/Package';
+import MeetGuide from '../../Components/MeetGuide/MeetGuide';
 const Section = () => {
     return (
         <div>
@@ -21,7 +22,7 @@ const Section = () => {
       <Package></Package>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 3</h2>
+      <MeetGuide></MeetGuide>
     </TabPanel>
   </Tabs>
         </div>

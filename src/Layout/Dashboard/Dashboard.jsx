@@ -1,8 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaHome, FaShoppingBag } from "react-icons/fa";
-import useCart from "../../Hook/useCart";
+// import useCart from "../../Hook/useCart";
 const Dashboard = () => {
-    const [cart]=useCart();
+    // const [cart]=useCart();
     // get isAdmin value from the database
     const isAdmin=true;
     return (
@@ -12,20 +12,20 @@ const Dashboard = () => {
                {
                 isAdmin?
                      <>
-                    <li> <NavLink to="/dashboard/users"><FaHome/>My Profile</NavLink></li>
-                    <li> <NavLink to="/dashboard/booking"><FaShoppingBag/>Add Package</NavLink></li>
-                    <li> <NavLink to="/dashboard/cart"><FaShoppingBag/>Manage Users</NavLink></li>
+                    <li> <NavLink to="/dashboard/userProfile"><FaHome/>My Profile</NavLink></li>
+                    <li> <NavLink to="/dashboard/addPackage"><FaShoppingBag/>Add Package</NavLink></li>
+                    <li> <NavLink to="/dashboard/users"><FaShoppingBag/>Manage Users</NavLink></li>
                     </>
                     :
                     <>
-                     <li> <NavLink to="/dashboard/profile"><FaHome/>My Profile</NavLink></li>
-                    <li> <NavLink to="/dashboard/booking"><FaShoppingBag/>My Bookings</NavLink></li>
+                     <li> <NavLink to="/dashboard/userProfile"><FaHome/>My Profile</NavLink></li>
+                    <li> <NavLink to="/dashboard/userBooking"><FaShoppingBag/>My Bookings</NavLink></li>
                     <li> <NavLink to="/dashboard/cart"><FaShoppingBag/>My Wishlist</NavLink></li>
                     </>
                  
                }
             <div className="divider">OR</div>
-            <li> <NavLink to="/"><FaHome/>My Profile</NavLink></li>
+            <li> <NavLink to="/"><FaHome/>Home page</NavLink></li>
             </ul>
             </div>
            

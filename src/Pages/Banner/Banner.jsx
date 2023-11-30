@@ -25,7 +25,7 @@ const Banner = () => {
           mousewheel={true}
           keyboard={true}
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          className="mySwiper opacity-4 z-1 mt-24"
+          className="mySwiper opacity-4 z-1 mt-32"
         >
           <SwiperSlide><img src={slide1} alt="" className="" /></SwiperSlide>
           <SwiperSlide> <img src={slide2} alt="" className="" /></SwiperSlide>
