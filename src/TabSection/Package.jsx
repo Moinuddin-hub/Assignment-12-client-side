@@ -9,7 +9,7 @@ const Package = () => {
    const [card,setCard]=useState([]);
     const [cart]=useCart();  
    useEffect(()=>{
-       fetch('http://localhost:5000/package')
+       fetch('https://assignment-12-server-opal-seven.vercel.app/package')
        .then(res=>res.json())
        .then(data=>setCard(data));
    },[])

@@ -1,30 +1,25 @@
 import { createContext, useEffect, useState } from 'react';
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GithubAuthProvider, updateProfile } from "firebase/auth";
 import { auth } from '../Firebase/firebase-config';
-
+import useAxiosPublic from '../Hook/useAxiosPublic';
 
 export const AuthContext = createContext(null);
 
 
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider()
+
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(true)
-
+    const googleProvider = new GoogleAuthProvider();
+    const axiosPublic=useAxiosPublic();
 
     //google login
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider);
     }
-    //github login
-    const githubLogin = () => {
-        setLoading(true)
-        return signInWithPopup(auth, githubProvider);
-    }
-
+  
     // create user 
     const createUser = (email, password) => {
         setLoading(true)
@@ -63,20 +58,28 @@ const AuthProvider = ({ children }) => {
     // recommended  way
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            // if(user){
-
-            // }
-            // else{
-
-            // }
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log('current User',currentUser);
+            setUser(currentUser);
+            if(currentUser){
+                const userInfo={email:currentUser.email};
+                 axiosPublic.post('/jwt',userInfo)
+                .then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token',res.data.token);
+                    }
+                })
+            }
+            else{
+            // 
+            localStorage.removeItem('access-token')
+            }
     setLoading(false)
        });
         return () => {
             unSubscribe()
         }
-    }, [])
+    }, [axiosPublic])
 
 
     const authentication = {
@@ -86,7 +89,6 @@ const AuthProvider = ({ children }) => {
         logOut,
         user,
         loading,
-        githubLogin,
         handleUpdateProfile
     }
     return (

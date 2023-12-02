@@ -1,13 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaHome, FaShoppingBag } from "react-icons/fa";
+import useAdmin from "../../Hook/useAdmin";
 // import useCart from "../../Hook/useCart";
 const Dashboard = () => {
-    // const [cart]=useCart();
-    // get isAdmin value from the database
-    const isAdmin=true;
+    const[isAdmin]=useAdmin();
+   
     return (
         <div className="flex">
-            <div className="w-64 min-h-screen bg-orange-300">
+            <div className="w-64 min-h-screen bg-orange-600">
                 <ul className="menu">
                {
                 isAdmin?

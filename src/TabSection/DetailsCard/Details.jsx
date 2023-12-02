@@ -12,7 +12,7 @@ const Details = () => {
   const [item,setItem]=useState([]);
    const[loading,setLoading]=useState(true);
   useEffect(()=>{
-    fetch(`http://localhost:5000/package/${_id}`)
+    fetch(`https://assignment-12-server-opal-seven.vercel.app/package/${_id}`)
     .then(res=>res.json())
     .then((data)=>{
          setItem(data);

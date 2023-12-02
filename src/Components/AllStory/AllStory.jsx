@@ -7,7 +7,7 @@ const AllStory = () => {
     const[story,setStory]=useState([]);
 
     useEffect(()=>{
-        fetch('story.json')
+        fetch('https://assignment-12-server-opal-seven.vercel.app/story/')
         .then(res=>res.json())
         .then(data=>setStory(data));
     },[])

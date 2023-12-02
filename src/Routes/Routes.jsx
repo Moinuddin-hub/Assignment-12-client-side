@@ -15,6 +15,9 @@ import UserProfile from "../Layout/Dashboard/UserProfile/UserProfile";
 import UserBooking from "../Layout/Dashboard/Booking/UserBooking";
 import MeetGuide from "../Components/MeetGuide/MeetGuide";
 import TourGuideProfile from "../Components/MeetGuide/TourGuideProfile";
+import DetailsStory from "../Components/AllStory/DetailsStory";
+import AddBooking from "../Components/AddBooking/Addbooking";
+import AdminRoute from "../Hook/AdminRoute";
 // import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -42,7 +45,7 @@ const router = createBrowserRouter([
       {
         path:'/package',
         element:<Packages></Packages>,
-        loader:() => fetch('http://localhost:5000/package'),
+        loader:() => fetch('https://assignment-12-server-opal-seven.vercel.app/package'),
 
       },
       {
@@ -52,6 +55,14 @@ const router = createBrowserRouter([
       {
         path:'tourGuideProfile',
         element:<TourGuideProfile></TourGuideProfile>
+      },
+      {
+        path:'/detailStory/:_id',
+        element:<DetailsStory></DetailsStory>  
+      }
+      ,{
+        path:'booking',
+        element:<AddBooking></AddBooking>
       }
     ],
   },
@@ -66,11 +77,11 @@ const router = createBrowserRouter([
       //Admin routes
       {
         path:'users',
-        element:<AllUser></AllUser>
+        element:<AdminRoute><AllUser></AllUser></AdminRoute>
       },
       {
         path:'addPackage',
-        element:<AddCart></AddCart>
+        element:<AdminRoute><AddCart></AddCart></AdminRoute>
       },
       {
         path:'userProfile',
