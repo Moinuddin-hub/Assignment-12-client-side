@@ -18,6 +18,12 @@ import TourGuideProfile from "../Components/MeetGuide/TourGuideProfile";
 import DetailsStory from "../Components/AllStory/DetailsStory";
 import AddBooking from "../Components/AddBooking/Addbooking";
 import AdminRoute from "../Hook/AdminRoute";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../Pages/Dashboard/Cart/AdminHome";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Community from "../Components/Navbar/Community";
+import Blog from "../Components/Navbar/Blog";
+import Contact from "../Components/Navbar/Contact";
 // import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -37,6 +43,18 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>
+      },
+      {
+        path:'community',
+        element:<Community></Community>
+      },
+      {
+        path:'blog',
+        element:<Blog></Blog>
+      },
+      {
+        path:'contact',
+        element:<Contact></Contact>
       },
       {
         path: "/details/:_id",
@@ -68,7 +86,7 @@ const router = createBrowserRouter([
   },
   {
     path:'dashboard',
-    element:<Dashboard></Dashboard>,
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
       {
         path:'cart',
@@ -76,12 +94,21 @@ const router = createBrowserRouter([
       },
       //Admin routes
       {
+        path:'adminHome',
+        element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
+      },
+      {
         path:'users',
         element:<AdminRoute><AllUser></AllUser></AdminRoute>
       },
       {
         path:'addPackage',
         element:<AdminRoute><AddCart></AddCart></AdminRoute>
+      },
+      // user
+      {
+        path:'userHome',
+        element:<UserHome></UserHome>
       },
       {
         path:'userProfile',

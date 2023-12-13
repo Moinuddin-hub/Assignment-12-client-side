@@ -4,12 +4,13 @@ import toast from "react-hot-toast";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
+// import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const SingUp = () => {
     const axiosPublic=useAxiosPublic();
+    // const axios=useAxiosSecure();
     const { createUser, handleUpdateProfile } = useAuth();
     const navigate = useNavigate();
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -18,7 +19,7 @@ const SingUp = () => {
         const email = event.target.email.value;
         const img = event.target.img.value;
         const password = event.target.password.value;
-
+        console.log(name,email,img,password);
         // validation 
         if (password.length < 6) {
             toast.error('Password must be at least 6 characters');
@@ -26,12 +27,26 @@ const SingUp = () => {
         }
         // creating a new user
         createUser(email, password)
+        .then(()=>{
+            handleUpdateProfile(name, img)
+            .then(() => {
+                toast.success('User created successfully');
+                navigate('/login')
+
+            })
+            
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+        
+        
         const userInfo={
             name:name,
             email:email,
             img:img,
         }
-        axiosPublic.post('/users',userInfo)
+    axiosPublic.post('/users',userInfo)
         .then(res=>{
             if(res.data.insertedId){
                 Swal.fire({
@@ -42,15 +57,9 @@ const SingUp = () => {
                     timer: 1500,
                   });
             }
+       
+            
         })
-            .then(() => {
-                handleUpdateProfile(name, img)
-                    .then(() => {
-                        toast.success('User created successfully');
-                        navigate('/login')
-
-                    })
-            })
             .catch(error => {
                 toast.error(error.message)
             })

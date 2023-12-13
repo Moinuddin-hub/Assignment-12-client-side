@@ -1,5 +1,6 @@
 import { Link,NavLink} from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
+// import Avater from "../Avater";
 
 
 const Navbar = () => {
@@ -9,17 +10,14 @@ const Navbar = () => {
      to="/" className={({ isActive, isPending }) =>  
        isPending ? "pending" : isActive ? "active" : ""   } >Home
       </NavLink></li>
-      <li className="px-4 py-2"><NavLink to="/" className={({ isActive, isPending }) =>  
+      <li className="px-4 py-2"><NavLink to="community" className={({ isActive, isPending }) =>  
        isPending ? "pending" : isActive ? "active" : ""   } >Community
       </NavLink></li>
-     <li className="px-4 py-2"> <NavLink to="/" className={({ isActive, isPending }) =>  
+     <li className="px-4 py-2"> <NavLink to="blog" className={({ isActive, isPending }) =>  
        isPending ? "pending" : isActive ? "active" : ""   } > Blogs
       </NavLink> </li>
 
-      <li className="px-4 py-2"><NavLink to="/" className={({ isActive, isPending }) =>  
-       isPending ? "pending" : isActive ? "active" : ""   } >About Us
-      </NavLink></li>
-      <li className="px-4 py-2"><NavLink to="/" className={({ isActive, isPending }) =>  
+      <li className="px-4 py-2"><NavLink to="contact" className={({ isActive, isPending }) =>  
        isPending ? "pending" : isActive ? "active" : ""   } >Contact Us
       </NavLink></li>
        
@@ -58,6 +56,7 @@ const Navbar = () => {
                                 <img src={user.photoURL} alt={user.displayName} />
                             </div>
                         </label>
+                         {/* <Avater></Avater> */}
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
                                 <button className="btn btn-sm  btn-ghost">{user.displayName}</button>
