@@ -18,6 +18,7 @@ const Banner = () => {
  
     return (
         <>
+        <div className='w-2/5 md:w-1/2 lg:w-full' >
         <Swiper 
           cssMode={true}
           navigation={true}
@@ -25,15 +26,16 @@ const Banner = () => {
           mousewheel={true}
           keyboard={true}
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          className="mySwiper opacity-4 z-1 mt-32"
+          className="mySwiper opacity-4 -z-10 "
         >
-          <SwiperSlide><img src={slide1} alt="" className="" /></SwiperSlide>
+          <SwiperSlide><img src={slide1} alt="" className=" " /></SwiperSlide>
           <SwiperSlide> <img src={slide2} alt="" className="" /></SwiperSlide>
-          <SwiperSlide><img src={slide3} alt="" className="w-full" /></SwiperSlide>
-          <SwiperSlide><img src={slide4} alt="" className='w-full' />     </SwiperSlide>
+          <SwiperSlide><img src={slide3} alt="" className="" /></SwiperSlide>
+          <SwiperSlide><img src={slide4} alt="" className='' /> </SwiperSlide>
      
         
         </Swiper>
+        </div>
       </>
     );
 };

@@ -6,8 +6,8 @@ import Package from '../../TabSection/Package';
 import MeetGuide from '../../Components/MeetGuide/MeetGuide';
 const Section = () => {
     return (
-        <div>
-            <h2 className="text-4xl text-center font-bold mt-8">Travel Guide Section</h2> 
+        <div className='w-1/3 md:w-1/2 lg:w-full'>
+      <h2 className="text-4xl text-center font-bold mt-8">Travel Guide Section</h2> 
             <Tabs>
     <TabList>
       <Tab>Overview</Tab>

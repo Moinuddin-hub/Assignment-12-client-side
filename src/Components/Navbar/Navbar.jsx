@@ -27,7 +27,7 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
     return (
         <>
-        <div className="navbar w-2/5 lg:w-full">
+        <div className="navbar  lg:w-full bg-red-200">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -37,7 +37,7 @@ const Navbar = () => {
                         <Menus />
                     </ul>
                 </div>
-                <img src="https://i.ibb.co/86yWh4J/Tourist-logo.webp" alt="" className="w-20 h-20" />
+                <img src="https://i.ibb.co/86yWh4J/Tourist-logo.webp" alt="" className="w-10 h-10" />
 
             </div>
             <div className="navbar-center hidden lg:flex">

@@ -21,7 +21,7 @@ const Package = () => {
             <div className="badge badge-secondary">+{cart.length}</div></button></Link>
           <div className="grid grid-cols-3 mt-4">
             {
-              card.map(card=><Cards key={card._id} card={card}></Cards>)
+              card?.map(card=><Cards key={card._id} card={card}></Cards>)
             }
           </div>
             <div className="text-center mt-4">

@@ -17,7 +17,7 @@ const AllStory = () => {
             <h2 className="text-3xl text-center font-bold mt-8">All story page</h2>
             <div className="grid grid-cols-4 gap-4 mt-8">
                 {
-                    story.map(item=><Story key={item._id} item={item}></Story>)
+                    story?.map(item=><Story key={item._id} item={item}></Story>)
                 }
             </div>
         </div>
